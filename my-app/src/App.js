@@ -1,11 +1,11 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 
 function App() {
 
   let textInput = React.createRef();
   let textOut = React.createRef();
-
+  const [output, setOutput] = useState('useState'); //useState
 
   function f1(arg) {
     console.log('f1 works ' + arg);
@@ -15,6 +15,8 @@ function App() {
     console.log('input');
     // console.log(event.target.value);
     console.log(textInput.current.value);
+    textOut.current.innerHTML = textInput.current.value; //выводит на экран то,что написано в консоли инпута(ввода)
+    setOutput(textInput.current.value); //useState
   }
 
   return (
@@ -31,8 +33,10 @@ function App() {
       <section>
         <h2>Input</h2>
         <input type="text" onInput={showInput} ref={textInput}/>
-      </section>
-    </>
+        <p ref={textOut}></p>
+        <h3>{output}</h3>
+      </section> 
+    </> //h3 output - useState
   );
 
 };
